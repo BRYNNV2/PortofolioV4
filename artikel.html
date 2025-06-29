@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judul Artikel - My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan Variabel */
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --dark-secondary: #636e72;
+            --light: #dfe6e9;
+            --background: #1a1a2e;
+            --card-bg: #16213e;
+            --accent: #0f3460;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Navigation */
+        .article-nav {
+            background: var(--card-bg);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .back-btn {
+            color: var(--secondary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+        
+        .back-btn:hover {
+            color: var(--primary);
+        }
+        
+        .article-share {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .article-share span {
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+        
+        .article-share a {
+            color: var(--light);
+            transition: color 0.3s;
+        }
+        
+        .article-share a:hover {
+            color: var(--primary);
+        }
+        
+        /* Article Header */
+        .article-header {
+            background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .article-header .container {
+            max-width: 800px;
+        }
+        
+        .article-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .article-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            display: block;
+        }
+        
+        .article-date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+        
+        .article-intro {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .article-content h2 {
+            color: var(--background);
+            margin: 40px 0 15px;
+            font-size: 1.8rem;
+        }
+        
+        .article-content h3 {
+            color: var(--background);
+            margin: 30px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        .article-content p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--dark-secondary);
+        }
+        
+        .article-image {
+            width: 100%;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            display: block;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--dark-secondary);
+            margin-top: -15px;
+            margin-bottom: 30px;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--dark);
+        }
+        
+        pre {
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+        
+        ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        ul li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        /* Article Footer */
+        .article-footer {
+            margin: 50px 0;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .article-tags {
+            margin-bottom: 30px;
+        }
+        
+        .article-tags span {
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .article-tags a {
+            display: inline-block;
+            background: #f1f2f6;
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .article-tags a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .article-author {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .article-author img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .article-author h4 {
+            margin-bottom: 8px;
+            color: var(--background);
+        }
+        
+        .article-author p {
+            color: var(--dark-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        /* Related Articles */
+        .related-articles {
+            background: #f1f2f6;
+            padding: 50px 0;
+        }
+        
+        .related-articles h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--background);
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .related-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .related-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .related-card > div {
+            padding: 20px;
+        }
+        
+        .related-card .category {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .related-card h4 {
+            margin-bottom: 8px;
+        }
+        
+        .related-card h4 a {
+            transition: color 0.3s;
+        }
+        
+        .related-card h4 a:hover {
+            color: var(--primary);
+        }
+        
+        .related-card .date {
+            color: var(--dark-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background: var(--card-bg);
+            color: var(--light);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        #scrollToTopBtn i {
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .article-header {
+                padding: 40px 0;
+            }
+            
+            .article-header h1 {
+                font-size: 2rem;
+            }
+            
+            .article-nav {
+                padding: 15px;
+            }
+            
+            .article-content {
+                padding: 0 15px;
+            }
+            
+            .article-author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #scrollToTopBtn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        <div class="article-share">
+            <span>Share:</span>
+            <a href="https://x.com/home"><i class="fab fa-twitter"></i></a>
+            <a href="https://id.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/?locale=id_ID"><i class="fab fa-facebook"></i></a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container">
+            <span class="article-category">Web Development</span>
+            <span class="article-category">UI/UX Design</span>
+            <h1>Panduan Lengkap Membuat Portofolio Modern dengan HTML & CSS</h1>
+            <div class="article-meta">
+                <img src=" asset/shinnn.jpg" alt="Author" class="author-img">
+                <div>
+                    <span class="author-name">Muhammad Febry</span>
+                    <span class="article-date">Published on June 20, 2025 · 8 min read</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="article-content">
+        <article>
+            <p class="article-intro">Dalam era digital saat ini, memiliki portofolio online yang profesional menjadi kebutuhan penting bagi developer, designer, dan kreator konten. Artikel ini akan memandu Anda langkah demi langkah membuat portofolio modern menggunakan HTML dan CSS.</p>
+            
+            <h2>Struktur Dasar HTML</h2>
+            <p>Langkah pertama adalah menyiapkan struktur dasar HTML. Berikut contoh struktur yang bisa Anda gunakan:</p>
+            
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Portfolio&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
+            <h2>Desain Modern dengan CSS</h2>
+            <p>Gunakan CSS modern seperti Flexbox dan Grid untuk layout yang responsif:</p>
+            
+            <img src="asset/Landingpage.png" alt="Contoh Portofolio" class="article-image">
+            <p class="image-caption">Contoh tampilan portofolio modern ala kink febri</p>
+            
+            <h3>Tips Warna dan Typography</h3>
+            <p>Pemilihan warna dan typography yang tepat sangat penting:</p>
+            
+            <ul>
+                <li>Gunakan maksimal 3-4 warna utama</li>
+                <li>Pilih font yang mudah dibaca</li>
+                <li>Pertahankan konsistensi di seluruh halaman</li>
+            </ul>
+            
+            <blockquote>
+                "Portofolio yang baik bukan hanya tentang menampilkan karya, tapi juga tentang menceritakan kisah perjalanan profesional Anda."
+            </blockquote>
+            
+            <h2>Membuat Halaman Kontak</h2>
+            <p>Jangan lupa sertakan halaman kontak yang mudah diakses:</p>
+            
+            <pre><code>&lt;form action="https://formspree.io/f/your-id" method="POST"&gt;
+    &lt;input type="text" name="name" placeholder="Your Name" required&gt;
+    &lt;input type="email" name="_replyto" placeholder="Your Email" required&gt;
+    &lt;textarea name="message" placeholder="Your Message" required&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </article>
+        
+        <!-- Article Footer -->
+        <div class="article-footer">
+            <div class="article-tags">
+                <span>Tags:</span>
+                <a href="https://www.geeksforgeeks.org/websites-apps/web-design/">Web Design</a>
+                <a href="https://www.w3schools.com/css/">CSS</a>
+                <a href="https://www.w3schools.com/html/">HTML</a>
+                <a href="Landingpage.html">Portfolio</a>
+            </div>
+            
+            <div class="article-author">
+                <img src="asset/shinnnn.jpg" alt="Author">
+                <div>
+                    <h4>Tentang Penulis</h4>
+                    <p>Muhammad Febry adalah seorang pemula Web Developer dengan pengalaman 2 tahun tahun dalam membangun website dengan tampilan modern. Spesialisasi utama termasuk front-end development dan UI/UX design.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="container">
+            <h3>Artikel Terkait</h3>
+            <div class="related-grid">
+                <article class="related-card">
+                    <img src="" alt="Related Article">
+                    <div>
+                        <span class="category">CSS</span>
+                        <h4><a href="https://positivethinking.tech/insights/the-10-new-css-features-in-2023/">10 Teknik CSS Modern untuk 2023</a></h4>
+                        <span class="date">May 28, 2023</span>
+                    </div>
+                </article>
+                
+                <article class="related-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Related Article">
+                    <div>
+                        <span class="category">JavaScript</span>
+                        <h4><a href="https://www.jagoanhosting.com/blog/framework-javascript/">Framework JavaScript Terbaik untuk Projek Anda</a></h4>
+                        <span class="date">April 15, 2023</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Muhammad Febry. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // Scroll to Top Functionality
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        
+        // When the user scrolls down 300px from the top, show the button
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.style.display = "flex";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+        
+        // When the user clicks on the button, scroll to the top
+        scrollToTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html>
